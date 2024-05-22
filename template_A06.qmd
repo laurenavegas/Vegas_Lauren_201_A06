@@ -102,7 +102,11 @@ Extract the value `8162` (LeBron James points) in 2 different ways:
 - using names
 
 ```{r}
+# using indexing
+player_info[[2]][[4]]
 
+# using names
+player_info[["LJ"]][["points"]]
 ```
 
 
@@ -113,7 +117,17 @@ Add a new named element to the end of each player's list called `height`. The he
 Print the `player_info` list to prove you were successful.
 
 ```{r}
+# create list of heights
+heights <- list(78, 81, 78, 86, 85)
 
+for (i in 1:length(heights)) { # the length of the list of heights is the same as the number of players 
+  # name for the element 
+  height_vec <- c("height" = heights[i])
+  # add each element and name to the end of each player's list
+  player_info[[i]] <- append(player_info[[i]], height_vec)
+}
+
+player_info
 ```
 
 
@@ -132,6 +146,22 @@ Hint: initialize an empty list
 Note: this must still run correctly even if the values were to change or if another player were added to the list or if the player order changed.
 
 ```{r}
+# initialize empty list to contain points per game
+points_per_game <- list()
+
+for (i in 1:length(player_info)) { 
+  
+  # calculate points per game
+  ppg <- player_info[[i]][["points"]] / player_info[[i]][["games_played"]]
+  
+  # add each player's points per game to the specified list
+  points_per_game <- append(points_per_game, ppg)
+}
+
+# assign each player's points per game their initials
+names(points_per_game) <- c(names(player_info))
+
+points_per_game
 
 ```
 
@@ -143,7 +173,8 @@ Use the list created in Part c and an appropriate apply function to round each v
 Store the output as a vector and print the results.
 
 ```{r}
-
+rounded_ppg <- c(lapply(points_per_game, function(x) round(x, 2)))
+rounded_ppg
 ```
 
 
@@ -164,7 +195,15 @@ ie: 91 rounds to 90; 173 rounds to 200; 1450 rounds to 1000
 Hint: use `MARGIN = 1:2` to apply the function to each value instead of only a row/col.
 
 ```{r}
-
+apply(mat_rand, 1:2, round_fun <- function(x) {
+  if (x >= 1000) {
+    return(round(x, -3))
+  } else if (x >= 100) {
+    return(round(x, -2))
+  } else if (x >= 10) {
+    return(round(x, -1))
+  }
+})
 ```
 
 
@@ -188,7 +227,7 @@ max_temps <- read_tsv("state_max_temps.tsv") |>
 Calculate the average temperature for each month across the whole data frame (using the data for all three states together).
 
 ```{r}
-
+max_temps
 ```
 
 

@@ -126,7 +126,6 @@ for (i in 1:length(heights)) { # the length of the list of heights is the same a
   # add each element and name to the end of each player's list
   player_info[[i]] <- append(player_info[[i]], height_vec)
 }
-
 player_info
 ```
 
@@ -244,9 +243,9 @@ Create three new data frames by slicing the data by state.
 No need to print any output here.
 
 ```{r}
-#max_temps$state == "CO"
-#max_temps$state == "OH"
-#max_temps$state == "VA"
+max_temps_co <- max_temps[max_temps$state == "CO", ]
+max_temps_oh <- max_temps[max_temps$state == "OH", ]
+max_temps_va <- max_temps[max_temps$state == "VA", ]
 ```
 
 

@@ -243,9 +243,10 @@ Create three new data frames by slicing the data by state.
 No need to print any output here.
 
 ```{r}
-max_temps_co <- max_temps[max_temps$state == "CO", ]
-max_temps_oh <- max_temps[max_temps$state == "OH", ]
-max_temps_va <- max_temps[max_temps$state == "VA", ]
+co_temps <- max_temps[max_temps$state == "CO", ]
+oh_temps <- max_temps[max_temps$state == "OH", ]
+va_temps <- max_temps[max_temps$state == "VA", ]
+co_temps
 ```
 
 
@@ -266,7 +267,19 @@ Example (this is NOT the answer just an example of what goes in the {}):
 Note: This code should still run successfully even if the numbers were to change.
 
 ```{r}
-
+year <- c()
+medians <- c()
+for (i in 1:nrow(co_temps)) {
+  year <- append(year, co_temps$year[i])
+  sum <- 0
+  for (j in 3:ncol(co_temps)) {
+    sum <- sum + as.numeric(co_temps[i, j])
+  }
+  med <- sum / 12
+  medians <- append(medians, med)
+}
+print(year)
+print(medians)
 ```
 
 

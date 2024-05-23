@@ -267,19 +267,29 @@ Example (this is NOT the answer just an example of what goes in the {}):
 Note: This code should still run successfully even if the numbers were to change.
 
 ```{r}
-year <- c()
+# initalize vectors to hold the years and median temperatures 
+years <- c()
 medians <- c()
+
 for (i in 1:nrow(co_temps)) {
-  year <- append(year, co_temps$year[i])
+  # add each year to the specified vector
+  years <- append(years, co_temps$year[i])
+  # initalize object to hold the sum of temps in each year
   sum <- 0
   for (j in 3:ncol(co_temps)) {
     sum <- sum + as.numeric(co_temps[i, j])
   }
+  # calculate the median temperature 
   med <- sum / 12
+  # add each year's median temperature to the medians vector
   medians <- append(medians, med)
 }
-print(year)
-print(medians)
+
+# store the minimum and maximum median indexes 
+max_index <- which.max(medians)
+min_index <- which.min(medians)
+
+print(paste0("The maximum median annual temperature of ", round(medians[max_index], 2), " occurred in ", years[max_index], " and the minimum median annual temperature of ", round(medians[min_index], 2), " occurred in ", years[min_index], "."))
 ```
 
 

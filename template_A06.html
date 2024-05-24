@@ -3436,12 +3436,12 @@ $SO
 <span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     [,1] [,2] [,3] [,4] [,5]
-[1,]  800  100  500   30 2000
-[2,] 1000 1000 2000  400   50
-[3,]   20 2000   90  400  500
-[4,]  100   70 1000   40 2000
-[5,]  100 1000   20  100  200
-[6,]   70 1000 2000 1000 2000</code></pre>
+[1,]  700   20   50   60  600
+[2,] 1000   50 2000  400   20
+[3,]  100 1000  200   80 1000
+[4,]   80   40 2000 1000 2000
+[5,]  700   50 2000   10  900
+[6,] 2000  200 1000 1000  600</code></pre>
 </div>
 </div>
 </section>
@@ -3550,6 +3550,19 @@ $SO
 <p>Write a recursive function that calculates the sum of the digits in a number.</p>
 <p>Example: The number 312 would return 6 (3 + 1 + 2)</p>
 <p>Run your function with 935068.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>sum_digits <span class="ot">&lt;-</span> <span class="cf">function</span>(num) {</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (num <span class="sc">==</span> <span class="dv">0</span>) {</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="dv">0</span>)</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(num <span class="sc">%%</span> <span class="dv">10</span> <span class="sc">+</span> <span class="fu">sum_digits</span>(num <span class="sc">%/%</span> <span class="dv">10</span>))</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="fu">sum_digits</span>(<span class="dv">312</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 6</code></pre>
+</div>
+</div>
 </section>
 </section>
 

@@ -232,8 +232,8 @@ max_temps <- read_tsv("state_max_temps.tsv") |>
 Calculate the average temperature for each month across the whole data frame (using the data for all three states together).
 
 ```{r}
-month_cols <- max_temps[,3:14]
-average_temp <- colMeans(month_cols[, -1])
+# calculate and store the mean of each month
+average_temp <- colMeans(max_temps[,3:14])
 average_temp
 ```
 

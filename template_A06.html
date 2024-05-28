@@ -3442,12 +3442,12 @@ $SO
 <span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     [,1] [,2] [,3] [,4] [,5]
-[1,] 1000 1000  200 2000 2000
-[2,]  400 2000  200 1000   20
-[3,] 1000   60  800  300 2000
-[4,]   50   60  100   10   20
-[5,] 1000  400   10   40   20
-[6,]  400  700 1000  900  500</code></pre>
+[1,] 2000 2000  100   90  100
+[2,] 2000 1000   50  400   70
+[3,]  200  800  900  300 2000
+[4,]  300   90  600   60   30
+[5,]   60 2000 2000   10 1000
+[6,]  900 2000 1000  900   80</code></pre>
 </div>
 </div>
 </section>
@@ -3468,14 +3468,14 @@ $SO
 <h3 class="anchored" data-anchor-id="part-a-2-points">Part a (2 points)</h3>
 <p>Calculate the average temperature for each month across the whole data frame (using the data for all three states together).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>month_cols <span class="ot">&lt;-</span> max_temps[,<span class="dv">3</span><span class="sc">:</span><span class="dv">14</span>]</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>average_temp <span class="ot">&lt;-</span> <span class="fu">colMeans</span>(month_cols[, <span class="sc">-</span><span class="dv">1</span>])</span>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate and store the mean of each month</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>average_temp <span class="ot">&lt;-</span> <span class="fu">colMeans</span>(max_temps[,<span class="dv">3</span><span class="sc">:</span><span class="dv">14</span>])</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>average_temp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>     feb      mar      apr      may      jun      jul      aug      sep 
-41.93598 50.73148 61.35608 71.26111 79.95503 84.17460 82.23571 75.92857 
-     oct      nov      dec 
-64.56296 51.49921 41.11508 </code></pre>
+<pre><code>     jan      feb      mar      apr      may      jun      jul      aug 
+38.89206 41.93598 50.73148 61.35608 71.26111 79.95503 84.17460 82.23571 
+     sep      oct      nov      dec 
+75.92857 64.56296 51.49921 41.11508 </code></pre>
 </div>
 </div>
 </section>

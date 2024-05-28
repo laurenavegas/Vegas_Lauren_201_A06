@@ -121,7 +121,7 @@ Print the `player_info` list to prove you were successful.
 heights <- list(78, 81, 78, 86, 85)
 
 for (i in 1:length(heights)) { # the length of the list of heights is the same as the number of players 
-  # name for the element 
+  # create name for the element
   height_vec <- c("height" = heights[i])
   # add each element and name to the end of each player's list
   player_info[[i]] <- append(player_info[[i]], height_vec)
@@ -154,6 +154,7 @@ for (i in 1:length(player_info)) {
   ppg <- player_info[[i]][["points"]] / player_info[[i]][["games_played"]]
   
   # add each player's points per game to the specified list
+  
   points_per_game <- append(points_per_game, ppg)
 }
 
@@ -161,7 +162,6 @@ for (i in 1:length(player_info)) {
 names(points_per_game) <- c(names(player_info))
 
 points_per_game
-
 ```
 
 
@@ -193,12 +193,18 @@ ie: 91 rounds to 90; 173 rounds to 200; 1450 rounds to 1000
 
 Hint: use `MARGIN = 1:2` to apply the function to each value instead of only a row/col.
 
+
 ```{r}
 apply(mat_rand, 1:2, round_fun <- function(x) {
+  # round values with 4 digits to the nearest thousands
   if (x >= 1000) {
     return(round(x, -3))
+    
+  # round values with 3 digits to the nearest hundreds
   } else if (x >= 100) {
     return(round(x, -2))
+    
+  # round values with 2 digits to the nearest tens
   } else if (x >= 10) {
     return(round(x, -1))
   }
@@ -226,9 +232,9 @@ max_temps <- read_tsv("state_max_temps.tsv") |>
 Calculate the average temperature for each month across the whole data frame (using the data for all three states together).
 
 ```{r}
-apply(max_temps, 2, function(x) {
-  return(mean(as.numeric(x)))
-})
+month_cols <- max_temps[,3:14]
+average_temp <- colMeans(month_cols[, -1])
+average_temp
 ```
 
 
@@ -246,7 +252,6 @@ No need to print any output here.
 co_temps <- max_temps[max_temps$state == "CO", ]
 oh_temps <- max_temps[max_temps$state == "OH", ]
 va_temps <- max_temps[max_temps$state == "VA", ]
-co_temps
 ```
 
 
@@ -267,29 +272,16 @@ Example (this is NOT the answer just an example of what goes in the {}):
 Note: This code should still run successfully even if the numbers were to change.
 
 ```{r}
-# initalize vectors to hold the years and median temperatures 
-years <- c()
-medians <- c()
-
-for (i in 1:nrow(co_temps)) {
-  # add each year to the specified vector
-  years <- append(years, co_temps$year[i])
-  # initalize object to hold the sum of temps in each year
-  sum <- 0
-  for (j in 3:ncol(co_temps)) {
-    sum <- sum + as.numeric(co_temps[i, j])
-  }
-  # calculate the median temperature 
-  med <- sum / 12
-  # add each year's median temperature to the medians vector
-  medians <- append(medians, med)
-}
+# calculate and store medians
+medians <- apply(co_temps[, -1], 1, median)
+years <- co_temps$year
 
 # store the minimum and maximum median indexes 
 max_index <- which.max(medians)
 min_index <- which.min(medians)
 
 print(paste0("The maximum median annual temperature of ", round(medians[max_index], 2), " occurred in ", years[max_index], " and the minimum median annual temperature of ", round(medians[min_index], 2), " occurred in ", years[min_index], "."))
+
 ```
 
 
@@ -303,13 +295,14 @@ Run your function with 935068.
 
 ```{r}
 sum_digits <- function(num) {
-  if (num == 0) {
+  # base case
+  if (num == 0) { 
     return(0)
+  # recursive case
   } else {
-    return(num %% 10 + sum_digits(num %/% 10))
+    # add the last digit and run function again with last digit removed
+    return(num %% 10 + sum_digits(num %/% 10)) 
   }
 }
-sum_digits(312)
-
+sum_digits(935068)
 ```
-
